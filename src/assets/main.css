@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  /*overflow: hidden !important;*/
+  background-color: #FAFAFA !important;
+}
+
+h1, h2, p {
+  margin: 0 0 15px;
+}
+
+section {
+  background-color: #FAFAFA;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+}
+.hero {
+  background: url('https://via.placeholder.com/1200x400?text=Hero+Image') no-repeat center center;
+  background-size: cover;
+  padding: 50px;
+  color: white;
+  text-align: center;
+}
+.hero h1 {
+  font-size: 3em;
+  margin-bottom: 10px;
+}
+.hero p {
+  font-size: 1.5em;
+}
+
+.product-grid,
+.document-grid,
+.reference-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+.product img, .reference img {
+  width: 100%;
+}
+
+div.fp-watermark {
+  display: none;
+}
+
+section {
+  background-color: #FAFAFA;
+  padding: 0;
+}
+
+.fp-watermark {
+  display: none;
+}

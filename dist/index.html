@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>renit betón</title>
+  <style>
+    html {
+      font-family: Arial, Helvetica, sans-serif !important;
+    }
+
+    h1, h2, h3, h4, h5, h6, p, a {
+      font-family: Arial, Helvetica, sans-serif !important;
+    }
+
+    @media (max-width: 1024px) {
+      html, body {
+        overflow: auto !important;
+      }
+      .fp-section {
+        position: static !important;
+      }
+      .fp-slide {
+        width: 100% !important;
+      }
+    }
+
+    .floating-box {
+      position: fixed;
+      top: 30%;
+      left: 10px;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      text-align: center;
+      width: 200px;
+      display: none;
+    }
+
+    .floating-box h4 {
+      margin: 0 0 10px;
+      font-size: 16px;
+    }
+
+    .floating-box button {
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .floating-box button:hover {
+      background-color: #474343;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background: none !important;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      color: #333 !important;
+    }
+
+    @media (max-width: 768px) {
+      .floating-box {
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        top: auto;
+        width: 90%;
+      }
+
+      .floating-box h4 {
+        font-size: 14px;
+      }
+
+      .floating-box button {
+        font-size: 12px;
+        padding: 8px 12px;
+      }
+    }
+  </style>
+  <script type="module" crossorigin src="/renitbeton/assets/index-B_BagU0Y.js"></script>
+  <link rel="stylesheet" crossorigin href="/renitbeton/assets/index-BIlZtKRM.css">
+</head>
+<body>
+  <div id="app"></div>
+
+  <div class="floating-box" id="floatingBox">
+    <button class="close-btn" id="closeBox">✖</button>
+    <h4>Nenašli ste, čo ste hľadali?</h4>
+    <button id="backToProducts">Späť na produkty</button>
+  </div>
+
+  <script>
+    function navigateToHomeAndScroll(index, sectionId) {
+      if (window.location.pathname !== "/") {
+        localStorage.setItem("scrollTarget", JSON.stringify({ index, sectionId }));
+        window.location.href = "/";
+      } else {
+        performScrollToSection(index, sectionId);
+      }
+    }
+  
+    function performScrollToSection(index, sectionId) {
+      if (typeof fullpage_api !== "undefined") {
+        // Použitie fullpage.js API
+        fullpage_api.moveTo(index);
+      } else {
+        const target = document.getElementById(sectionId);
+        if (target) {
+          // Ak sekcia existuje, scrollujte
+          target.scrollIntoView({ behavior: "smooth" });
+        } else {
+          // Skontrolujte opakovane, kým sa sekcia nenačíta
+          const checkExist = setInterval(() => {
+            const target = document.getElementById(sectionId);
+            if (target) {
+              clearInterval(checkExist);
+              target.scrollIntoView({ behavior: "smooth" });
+            }
+          }, 100);
+        }
+      }
+    }
+  
+    function handleInitialScroll() {
+      const scrollTarget = localStorage.getItem("scrollTarget");
+      if (scrollTarget) {
+        const { index, sectionId } = JSON.parse(scrollTarget);
+        // Použite `setTimeout` na zaistenie, že DOM je pripravený
+        setTimeout(() => {
+          performScrollToSection(index, sectionId);
+          localStorage.removeItem("scrollTarget");
+        }, 300); // Mierne oneskorenie pre istotu
+      }
+    }
+  
+    function showFloatingBox() {
+      const floatingBox = document.getElementById('floatingBox');
+      if (window.location.pathname !== "/") {
+        setTimeout(() => {
+          floatingBox.style.display = "block";
+        }, 5000);
+      } else {
+        floatingBox.style.display = "none";
+      }
+    }
+  
+    document.addEventListener("DOMContentLoaded", () => {
+      handleInitialScroll();
+      showFloatingBox();
+  
+      document
+        .getElementById('backToProducts')
+        .addEventListener('click', (e) => {g
+          e.preventDefault();
+          navigateToHomeAndScroll(3, 'produkty');
+        });
+  
+      document
+        .getElementById('closeBox')
+        .addEventListener('click', () => {
+          document.getElementById('floatingBox').style.display = 'none';
+        });
+    });
+  
+    window.addEventListener("hashchange", showFloatingBox);
+    window.addEventListener("popstate", showFloatingBox);
+  </script>
+
+
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '7978810175529145');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=7978810175529145&ev=PageView&noscript=1"/>
+  </noscript>
+</body>
+</html>
